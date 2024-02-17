@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+// import 'package:mobilechat/features/authentication/screens/login/login.dart';
+import 'package:mobilechat/utils/theme/theme.dart';
+
+import 'features/authentication/screens/splash/splash.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -6,12 +10,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Mobile Chat',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home:  Container(),
+      theme: AppTheme.lightTheme,
+      home:  Splash(),
     );
   }
 }
