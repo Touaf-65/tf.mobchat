@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobilechat/features/authentication/screens/login/login.dart';
+import 'package:mobilechat/features/authentication/screens/login_or_register/login_or_register.dart';
+import 'package:mobilechat/features/authentication/screens/signup/signup.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -19,7 +21,7 @@ class _SplashState extends State<Splash> {
     await Future.delayed(const Duration(milliseconds: 1500), () {});
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Login()),
+      MaterialPageRoute(builder: (context) => LoginOrRegister()),
     );
   }
 

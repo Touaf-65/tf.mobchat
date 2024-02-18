@@ -3,7 +3,8 @@ import 'package:mobilechat/features/authentication/screens/login/widgets/login_f
 import 'package:mobilechat/features/authentication/screens/login/widgets/login_header.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  final void Function()? onTap;
+  const Login({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,11 @@ class Login extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LoginHeader(),
+            const LoginHeader(),
             const SizedBox(height: 20,),
-            LoginForm()
+            LoginForm(
+              onTap: onTap,
+            )
           ],
         ),
       ),

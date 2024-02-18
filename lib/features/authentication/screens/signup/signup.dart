@@ -4,7 +4,8 @@ import 'widgets/signup_form.dart';
 import 'widgets/signup_header.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+  final void Function()? onTap;
+  const SignUp({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,9 @@ class SignUp extends StatelessWidget {
           children: [
             const SignUpHeader(),
             const SizedBox(height: 20,),
-            SignUpForm()
+            SignUpForm(
+              onTap: onTap,
+            )
           ],
         ),
       ),

@@ -5,12 +5,16 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../../utils/constants/text_strings.dart';
 
 class SignUpForm extends StatelessWidget {
-  SignUpForm({super.key});
-
-  @override
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
+  final TextEditingController _confirmPwController = TextEditingController();
 
+  final void Function()? onTap;
+  SignUpForm({super.key, required this.onTap});
+
+  void signup() {}
+
+  @override
   Widget build(BuildContext context) {
     return Form(
         child: Padding(
@@ -76,7 +80,7 @@ class SignUpForm extends StatelessWidget {
 
             /// Confirm Password
               TextFormField(
-                controller: _pwController,
+                controller: _confirmPwController,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -104,7 +108,7 @@ class SignUpForm extends StatelessWidget {
             ),
 
             GestureDetector(
-              onTap: () => Get.to(() => Container()),
+              onTap: signup,
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
@@ -129,11 +133,14 @@ class SignUpForm extends StatelessWidget {
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary
                 ),),
-                Text('Login',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary
-                ),
+                GestureDetector(
+                  onTap: onTap,
+                  child: Text('Login',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary
+                  ),
+                  ),
                 ),
               ],
             )

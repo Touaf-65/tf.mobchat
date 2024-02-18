@@ -5,11 +5,15 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../../utils/constants/text_strings.dart';
 
 class LoginForm extends StatelessWidget {
-   LoginForm({super.key});
 
-  @override
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
+
+  final void Function()? onTap;
+  LoginForm({super.key, required this.onTap});
+
+  void login() {}
+  @override
 
   Widget build(BuildContext context) {
     return Form(
@@ -75,7 +79,7 @@ class LoginForm extends StatelessWidget {
             ),
 
             GestureDetector(
-              onTap: () => Get.to(() => Container()),
+              onTap: login,
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
@@ -100,11 +104,14 @@ class LoginForm extends StatelessWidget {
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.primary
                 ),),
-                Text('Register now',
-                style: TextStyle(
+                GestureDetector(
+                  onTap: onTap,
+                  child: Text('Register now',
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary
-                ),
+                      color: Theme.of(context).colorScheme.primary
+                  ),
+                  ),
                 ),
               ],
             )
