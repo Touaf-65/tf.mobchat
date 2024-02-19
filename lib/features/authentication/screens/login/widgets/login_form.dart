@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:mobilechat/utils/services/auth_service.dart';
 
 import '../../../../../utils/constants/text_strings.dart';
 
@@ -12,7 +13,21 @@ class LoginForm extends StatelessWidget {
   final void Function()? onTap;
   LoginForm({super.key, required this.onTap});
 
-  void login() {}
+  void login(BuildContext context) async {
+    final authService = AuthService();
+    
+    try {
+      await authService.loginWithEmailPassword(_emailController.text, _pwController.text);
+    }
+    catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          )
+      );
+    }
+  }
   @override
 
   Widget build(BuildContext context) {
@@ -79,15 +94,15 @@ class LoginForm extends StatelessWidget {
             ),
 
             GestureDetector(
-              onTap: login,
+              onTap: () => login(context),
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(15)
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 0),
-                margin: EdgeInsets.symmetric(horizontal: 80),
-                child: Center(
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+                margin: const EdgeInsets.symmetric(horizontal: 80),
+                child: const Center(
                   child: Text(AppTexts.login),
                 ),
               ),
