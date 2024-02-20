@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:mobilechat/utils/services/auth_service.dart';
 
 import '../../../../../utils/constants/text_strings.dart';
 
@@ -12,7 +13,29 @@ class SignUpForm extends StatelessWidget {
   final void Function()? onTap;
   SignUpForm({super.key, required this.onTap});
 
-  void signup() {}
+  void signup(BuildContext context) {
+    final _auth = AuthService();
+    if (_pwController.text == _confirmPwController.text) {
+      try {
+        _auth.signUpWithEmailPassword(_emailController.text, _pwController.text);
+      } catch (e) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+        ),
+        );
+      }
+    }
+    else {
+      showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(
+          title: Text(AppTexts.pasNotMatch),
+          ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,15 +131,15 @@ class SignUpForm extends StatelessWidget {
             ),
 
             GestureDetector(
-              onTap: signup,
+              onTap: () => signup(context),
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(15)
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 0),
-                margin: EdgeInsets.symmetric(horizontal: 80),
-                child: Center(
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+                margin: const EdgeInsets.symmetric(horizontal: 80),
+                child: const Center(
                   child: Text(AppTexts.register),
                 ),
               ),
