@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mobilechat/utils/constants/text_strings.dart';
 import 'package:mobilechat/utils/services/auth_service.dart';
+
+import 'widgets/drawer.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -14,11 +17,12 @@ class Home extends StatelessWidget {
     return  Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('MobileChat'),
+        title: Text(AppTexts.appTitle),
         actions: [
           IconButton(onPressed: logout, icon: Icon(Icons.logout))
         ],
       ),
+      drawer: MDrawer(),
       body: Text('welcome!', style: TextStyle(fontSize: 70),),
     );
   }
